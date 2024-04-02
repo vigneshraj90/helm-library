@@ -7,16 +7,16 @@ resources:
   repositories:
   - repository: helmRepo
     type: github
-    endpoint: John D Watson
-    name: johnwatson484/helm-charts
+    endpoint: vigneshraj90
+    name: vigneshraj90/helm-charts
 
 pool:
   vmImage: 'ubuntu-latest'
 
 variables:
   repo: helm-library
-  helmRepo: helm-charts
-  helmRepositoryUrl: git@github.com:johnwatson484/helm-charts.git
+  helmRepo: helm-library
+  helmRepositoryUrl: git@github.com:vigneshraj90/helm-library.git
   version:
   releaseExists: false
 
