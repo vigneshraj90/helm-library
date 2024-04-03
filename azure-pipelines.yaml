@@ -21,17 +21,11 @@ variables:
   releaseExists: false
 
 steps: 
-  - checkout: self
-    displayName: Clone repository
-
-  - task: HelmInstaller@1
-    displayName: Install Helm
-    inputs:
-      helmVersionToInstall: 'latest'
-
-  - checkout: helmRepo
-    displayName: Clone Helm repository
-
-  - script: |
-      helm package $(Agent.BuildDirectory)/s/$(repo)/$(repo) --destination $(Agent.BuildDirectory)/s/$(helmRepo)
-    displayName: Package Helm
+- task: HelmDeploy@0
+  inputs:
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceConnection: 'kubeconn'
+    command: 'install'
+    chartType: 'FilePath'
+    chartPath: 'https://github.com/Azure-Samples/helm-charts/tree/master/chart-source/azure-vote-osba'
+    overrideValues: '--set title="Winter Sports" --set value1=Ski --set value2=Snowboard'
